@@ -43,11 +43,11 @@ lgc-download games
 ```
 Available games:
 
-  MT.RU.PRODUCTION          Mir Tankov            Russia
-  MT.RPT.PRODUCTION         Mir Tankov            Russia (Public Test)
-  MK.RU.PRODUCTION          Mir Korabley          Russia
-  MK.RPT.PRODUCTION         Mir Korabley          Russia (Public Test)
-  WOTB.RU.PRODUCTION        Tanks Blitz           Russia
+  MT.RU.PRODUCTION          Мир танков                Мир танков
+  MT.PT.PRODUCTION          Мир танков                Мир танков Общий тест
+  MK.RU.PRODUCTION          Мир кораблей              Мир кораблей
+  MK.RPT.PRODUCTION         Мир кораблей              Мир кораблей Общий тест
+  WOTB.RU.PRODUCTION        Tanks Blitz               None
 ```
 
 ### List versions and parts
