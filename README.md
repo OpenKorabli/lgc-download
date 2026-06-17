@@ -1,10 +1,10 @@
 # lgc-download
 
-CLI tool to list, download, and selectively extract game files from the Lesta Game Center (LGC) CDN.
+CLI tool to list, download, and selectively extract game files from the Lesta Game Center (LGC) CDN, **derived from Monstrofil's [wgc-download](https://github.com/Monstrofil/wgc-download)**.
 
 Supports all games available through LGC: **Mir Korabley**, **Mir Tankov**, **Tanks Blitz**, and maybe others in the future.
 
-The key feature is **remote partial extraction** — you can pull individual files out of a 58 GB archive by downloading only the bytes you need, using HTTP range requests against the CDN.
+The key feature is **remote partial extraction** — you can pull individual files out of a 33 GB archive by downloading only the bytes you need, using HTTP range requests against the CDN.
 
 ## How it works
 
@@ -72,13 +72,13 @@ List and extract individual files from a remote `.dspkg` without downloading the
 
 ```bash
 # List all files inside the client archive
-lgc-download extract MT.RU.PRODUCTION client --list
+lgc-download extract MK.RU.PRODUCTION client --list
 
 # Extract a single file
-lgc-download extract MT.RU.PRODUCTION client Korabli.exe -d out/
+lgc-download extract MK.RU.PRODUCTION client Korabli.exe -d out/
 
 # Extract files matching a glob
-lgc-download extract MT.RU.PRODUCTION locale --filter "*/res/texts/ru/**" -d out/
+lgc-download extract MK.RU.PRODUCTION locale --filter "*/res/texts/ru/**" -d out/
 
 # Works with any game
 lgc-download extract MT.RU.PRODUCTION client --list
@@ -116,4 +116,5 @@ Total HTTP requests: 3
 ## License
 
 Upstream: [MIT](https://github.com/Monstrofil/wgc-download/blob/master/LICENSE)
-This project: MIT
+
+This project: [MIT](LICENSE)
