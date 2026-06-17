@@ -3,9 +3,9 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "wgc-download"
+name = "lgc-download"
 version = "0.2.0"
-description = "Download and extract Wargaming game files (WoWS, WoT, WoTB, WoWP) from the WGC API"
+description = "Download and extract Lesta game files (Mir Korabley, Mir Tankov, Tanks Blitz) from the LGC API"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
@@ -14,10 +14,10 @@ dependencies = [
 ]
 
 [project.scripts]
-wgc-download = "wgc_download.cli:main"
+lgc-download = "lgc_download.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/Monstrofil/wgc-download"
+Homepage = "https://github.com/Monstrofil/lgc-download"
 
 [tool.setuptools.packages.find]
 where = ["src"]

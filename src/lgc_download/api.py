@@ -1,4 +1,4 @@
-"""WGC API client — metadata, patches chain, and showroom fetching."""
+"""LGC API client — metadata, patches chain, and showroom fetching."""
 
 import json
 import os
@@ -10,15 +10,15 @@ import xml.etree.ElementTree as ET
 CHAIN_BOOTSTRAP = "f00"
 META_PROTO = "7.10"
 PATCHES_PROTO = "1.11"
-LANG_CODE = "EN"
-GC_PUBLISHER = "wargaming"
+LANG_CODE = "RU"
+GC_PUBLISHER = "lesta"
 
-USER_AGENT = "wgc-download/0.2.0"
+USER_AGENT = "lgc-download/0.2.0"
 
 SHOWROOM_URL = (
-    "https://wguscs-wgceu.wargaming.net/api/v20/content/showroom/"
-    "?lang=EN&gameid=WGC.EU.PRODUCTION&format=json"
-    "&wgc_publisher_id=wargaming&country_code=UA"
+    "https://lstuscs-ru.lesta.ru/api/v21/content/showroom/"
+    "?lang=RU&gameid=LGC.RU.PRODUCTION&format=json"
+    "&gc_publisher_id=lesta&country_code=RU"
 )
 
 

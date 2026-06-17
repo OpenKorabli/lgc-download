@@ -1,18 +1,18 @@
-# wgc-download
+# lgc-download
 
-CLI tool to list, download, and selectively extract game files from the Wargaming Game Center (WGC) CDN.
+CLI tool to list, download, and selectively extract game files from the Lesta Game Center (LGC) CDN.
 
-Supports all games available through WGC: **World of Tanks**, **World of Warships**, **WoT Blitz**, **World of Warplanes**, and others.
+Supports all games available through LGC: **Mir Korabley**, **Mir Tankov**, **Tanks Blitz**, and maybe others in the future.
 
 The key feature is **remote partial extraction** — you can pull individual files out of a 58 GB archive by downloading only the bytes you need, using HTTP range requests against the CDN.
 
 ## How it works
 
-Wargaming distributes updates as `.dspkg` archives (7z format) split into *parts*: `client`, `locale`, `sdcontent`, `hotfix`. Each part contains one archive.
+Lesta Game Center distributes updates as `.dspkg` archives (7z format) split into *parts*: `client`, `locale`, `sdcontent`, `hotfix`. Each part contains one archive.
 
 This tool:
 
-1. Queries the WGC showroom API to discover all available games and their update servers
+1. Queries the LGC showroom API to discover all available games and their update servers
 2. Fetches version metadata and patch chains for the selected game
 3. Parses 7z archive headers remotely via HTTP range requests (~512 KB to index any archive)
 4. Fetches only the compressed streams for files you request
@@ -27,7 +27,7 @@ pip install .
 Or run directly:
 
 ```
-python wgc.py <command>
+python lgc.py <command>
 ```
 
 Requires Python 3.10+ and [py7zr](https://pypi.org/project/py7zr/) (installed automatically).
@@ -37,34 +37,31 @@ Requires Python 3.10+ and [py7zr](https://pypi.org/project/py7zr/) (installed au
 ### List available games
 
 ```bash
-wgc-download games
+lgc-download games
 ```
 
 ```
 Available games:
 
-  WOT.EU.PRODUCTION         World of Tanks            Europe
-  WOT.NA.PRODUCTION         World of Tanks            North America
-  WOT.ASIA.PRODUCTION       World of Tanks            Asia
-  WOWS.WW.PRODUCTION        World of Warships         World of Warships
-  WOWS.PT.PRODUCTION        World of Warships         World of Warships Public Test
-  WOTB.WW.PRODUCTION        WoT Blitz                 Worldwide
-  WOWP.WW.PRODUCTION        World of Warplanes        Worldwide
-  HEAT.WW.PRODUCTION        Heat                      None
+  MT.RU.PRODUCTION          Mir Tankov            Russia
+  MT.RPT.PRODUCTION         Mir Tankov            Russia (Public Test)
+  MK.RU.PRODUCTION          Mir Korabley          Russia
+  MK.RPT.PRODUCTION         Mir Korabley          Russia (Public Test)
+  WOTB.RU.PRODUCTION        Tanks Blitz           Russia
 ```
 
 ### List versions and parts
 
 ```bash
-wgc-download list WOWS.WW.PRODUCTION
-wgc-download list WOT.EU.PRODUCTION
-wgc-download list WOT.EU.PRODUCTION --files client
+lgc-download list MK.RU.PRODUCTION
+lgc-download list MT.RU.PRODUCTION
+lgc-download list MT.RU.PRODUCTION --files client
 ```
 
 ### Download a full .dspkg
 
 ```bash
-wgc-download download WOWS.WW.PRODUCTION locale --all -d downloads/
+lgc-download download MT.RU.PRODUCTION locale --all -d downloads/
 ```
 
 Skips files that are already downloaded with the correct size. Uses atomic writes (`.part` + rename).
@@ -75,28 +72,29 @@ List and extract individual files from a remote `.dspkg` without downloading the
 
 ```bash
 # List all files inside the client archive
-wgc-download extract WOWS.WW.PRODUCTION client --list
+lgc-download extract MT.RU.PRODUCTION client --list
 
 # Extract a single file
-wgc-download extract WOWS.WW.PRODUCTION client WorldOfWarships.exe -d out/
+lgc-download extract MT.RU.PRODUCTION client Korabli.exe -d out/
 
 # Extract files matching a glob
-wgc-download extract WOWS.WW.PRODUCTION locale --filter "*/res/texts/en/**" -d out/
+lgc-download extract MT.RU.PRODUCTION locale --filter "*/res/texts/ru/**" -d out/
 
 # Works with any game
-wgc-download extract WOT.EU.PRODUCTION client --list
+lgc-download extract MT.RU.PRODUCTION client --list
 ```
 
 Example output:
 
 ```
-Archive: wows.ww_15.2.0.0.12116141_client.dspkg (58.7 GB)
+Archive: mk_26.6.1.0.8854215_client.dspkg (33.1 GB)
+URL: https://dl-korabli-s3.lesta.ru/cis/patches/mk_26.6.1.0.8854215_ru/mk_26.6.1.0.8854215_client.dspkg
 Reading archive index via range requests...
-Index: 935 files (2 HTTP requests, ~512KB transferred)
+Index: 799 files (2 HTTP requests, ~512KB transferred)
 
 Extracting 1 file(s): 12.9 KB to download, 31.4 KB uncompressed
 
-  GET  bin/12116141/idx/system_data.idx (12.9 KB) ... -> 31.4 KB
+  GET  bin/8854215/idx/system_data.idx (12.9 KB) ... -> 31.4 KB
 
 Done: 1 file(s) extracted
 Total HTTP requests: 3
@@ -117,4 +115,5 @@ Total HTTP requests: 3
 
 ## License
 
-MIT
+Upstream: [MIT](https://github.com/Monstrofil/wgc-download/blob/master/LICENSE)
+This project: MIT

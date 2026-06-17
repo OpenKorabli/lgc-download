@@ -1,4 +1,4 @@
-"""CLI entry point for wgc-download."""
+"""CLI entry point for lgc-download."""
 
 import argparse
 import fnmatch
@@ -234,8 +234,8 @@ def cmd_extract(args):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="wgc-download",
-        description="WGC Download Tool — list versions and download game files from Wargaming Game Center API",
+        prog="lgc-download",
+        description="LGC Download Tool — list versions and download game files from Lesta Game Center API",
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
